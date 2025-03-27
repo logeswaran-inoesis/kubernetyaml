@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nextjs-app
+  labels:
+    app: nextjs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nextjs
+  template:
+    metadata:
+      labels:
+        app: nextjs
+    spec:
+      containers:
+        - name: nextjs-app
+          image: "quickansf9:latest"  # Replace these with actual image and tag or use environment variables
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: nextjs-config
+          command: ["/bin/sh", "-c", "echo Starting... && npm run dev"]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nextjs-app
+spec:
+  selector:
+    app: nextjs
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: ClusterIP  # Or LoadBalancer if you want external access
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nextjs-config
+data:
+#  NEXTJS_IMAGE: "quickansf"  # Replace with your actual image name
+#  NEXTJS_TAG: "latest"  # Replace with your desired image tag
+  NEXTAUTH_URL: "https://quickans.ai/"
+  NEXTAUTH_SECRET: "supersecret"
+  NEXT_PUBLIC_BACKEND_URL: "https://api.quickans.ai"
+  NEXT_PUBLIC_SLACK_CLIENT_ID: "8444679109377.8431906978387"
+  NEXT_PUBLIC_SLACK_REDIRECT_URL: "https://api.quickans.ai/api/slack/oauth/callback/"
