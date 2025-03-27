@@ -1,0 +1,27 @@
+# Step 1: Use the official Python image from Docker Hub
+FROM python:3.11-slim
+
+# Step 2: Set environment variables to prevent Python from writing pyc files and buffering output
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Step 3: Set the working directory inside the container
+WORKDIR /app
+
+# Step 4: Install system dependencies (like Postgres and others)
+RUN apt-get update \
+    && apt-get install -y libpq-dev gcc \
+    && apt-get clean
+
+# Step 5: Install Python dependencies (based on requirements.txt)
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Step 6: Copy the project files into the container
+COPY . /app/
+
+# Step 7: Expose the port on which Django will run
+EXPOSE 8000
+
+# Step 8: Define the command to run the Django application
+#CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
