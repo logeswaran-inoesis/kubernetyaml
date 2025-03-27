@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: django-config
+data:
+  DJANGO_DEBUG: "False"
+  DATABASE_NAME: "django_db1"
+  DATABASE_USER: "django_user"
+  DATABASE_HOST: "postgres"
+  DATABASE_PORT: "5432"
+  DATABASE_PASSWORD: "django_password"
+  FRONTEND_BASE_URL: "https://quickans.ai"
+  BACKEND_BASE_URL: "https://api.quickans.ai"
+  CORS_ALLOWED_ORIGINS: "http://localhost:3000,http://127.0.0.1:3000,https://quickans.ai"
+  CACHE_URL: "redis://redis:6379/1"
+  CELERY_URL: "redis://redis:6379/0"
+  KEYCLOAK_SERVER_URL: "https://identity.quickans.ai/"
+  KEYCLOAK_REALM: "QuickAns.AI"
+  KEYCLOAK_RETURN_URI: "https://identity.quickans.ai/"
+  EMAIL_BACKEND: "django.core.mail.backends.smtp.EmailBackend"
+  EMAIL_HOST: "smtp.gmail.com"
+  EMAIL_PORT: "587"
+  EMAIL_USE_TLS: "True"
+  EMAIL_ADMIN: "admin@quickans.ai"
+  DJANGO_SECRET_KEY: "uy27R0qk3Qy5LP5OPfjD1XVzYgJ4pb98V0kZCN8xRZybg-4YmMWU0"  # Encode in Base64
+#  DATABASE_PASSWORD: "inpl2010quickans"  # Encode in Base64
+  KEYCLOAK_CLIENT_SECRET_KEY: "5ZtDkgrBsetsyEoMGwpkiekhQV7fQxw9"  # Encode in Base64
+  ADMIN_USERNAME: "admin@quickans.ai"  # Encode in Base64
+  ADMIN_PASSWORD: "Inpl2010@1"  # Encode in Base64
+  APP_ID: "2452618e-d5a5-441a-88e5-fa57150658c4"  # Encode in Base64
+#  APP_PASSWORD: ""  # Encode in Base64
+ # AZURE_OPENAI_API_KEY: ""  # Encode in Base64
+  OPENAI_API_KEY: ""  # Encode in Base64
+  SLACK_CLIENT_SECRET: "452502149d6691a850fa615a61f35a73"  # Encode in Base64
+  #SLACK_BOT_TOKEN: ""  # Encode in Base64
+  EMAIL_HOST_USER: "admin@quickans.ai"  # Encode in Base64
+  EMAIL_HOST_PASSWORD: "zgdl avxu qwqb ijmn"  # Encode in Base64
+---
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nextjs-config
+data:
+#  NEXTJS_IMAGE: "quickansf"  # Replace with your actual image name
+#  NEXTJS_TAG: "latest"  # Replace with your desired image tag
+  NEXTAUTH_URL: "https://quickans.ai/"
+  NEXTAUTH_SECRET: "supersecret"
+  NEXT_PUBLIC_BACKEND_URL: "https://api.quickans.ai"
+  NEXT_PUBLIC_SLACK_CLIENT_ID: "8444679109377.8431906978387"
+  NEXT_PUBLIC_SLACK_REDIRECT_URL: "https://api.quickans.ai/api/slack/oauth/callback/"
