@@ -1,0 +1,92 @@
+# Django App Configuration
+DJANGO_IMAGE=quickansb
+DEBUG=False
+PORT=3000
+DJANGO_TAG=latest
+CONTAINER_NAME=api.quickans.ai
+
+#nextjs app configration 
+NEXTJS_CONTAINER_NAME=quickans.ai
+NEXTJS_IMAGE=quickansnextjsv1
+NEXTJS_TAG=latest
+NEXT_PORT=3000
+NEXT_PUBLIC_API_URL=http://192.168.0.157:8000
+NEXTAUTH_SECRET=supersecret 
+NEXT_PUBLIC_SLACK_CLIENT_ID=8444679109377.8431906978387
+NEXT_PUBLIC_SLACK_REDIRECT_URL=http://192.168.0.157:8000/api/slack/oauth/callback/
+
+# Database Configuration
+DATABASE_NAME=mydatabase
+DATABASE_USER=myuserhel
+DATABASE_PASSWORD=Inpl2010@1
+DATABASE_HOST=postgres_db
+DATABASE_PORT=5432
+#Keycloak_db_cridentials
+KEYCLOAK_DATABASE_PASSWORD=postgrace
+KEYCLOAK_DATABASE_USER=User
+KEYCLOAK_DATABASE_NAME=keycloakdb
+#keycloak_cridentials
+KEYCLOAK_ADMIN=admin
+KEYCLOAK_ADMIN_PASSWORD=admin
+# Azure Microsoft Credentials
+APP_ID=""
+APP_PASSWORD=""
+
+# Keycloak Credentials
+KEYCLOAK_SERVER="https://identity.quickans.ai/realms/QuickAns.AI.Test"
+KEYCLOAK_SERVER_URL="https://identity.quickans.ai/"
+KEYCLOAK_REALM="QuickAns.AI.Test"
+KEYCLOAK_CLIENT_ID="quickans test"
+KEYCLOAK_CLIENT_SECRET_KEY="WshKZnIDyiX6QQHb3ENifnVXAdBVp3uD"
+KEYCLOAK_RETURN_URI="http://192.168.0.157:8000/"
+
+# CORS Origins
+CORS_ALLOWED_ORIGINS="http://192.168.0.157:3000,http://127.0.0.1:3000,http://localhost:3000"
+
+# Redis Cache
+CACHE_URL="redis://redis_cache:6379/1"
+
+# Celery
+CELERY_URL="redis://redis_cache:6379/0"
+
+# OpenAI Key and Endpoint
+OPENAI_API_KEY=""
+OPENAI_API_BASE="https://quickans.openai.azure.com/"
+
+# Gunicorn Command
+GUNICORN_CMD="gunicorn --bind 0.0.0.0:8000 aiproject.wsgi:application"
+#env for superuser
+DJANGO_SUPERUSER_USERNAME=admin
+DJANGO_SUPERUSER_EMAIL=admin@example.com
+DJANGO_SUPERUSER_PASSWORD=admin
+ 
+# startup commend Command 
+DJANGO_STARTUP_CMD=python manage.py makemigrations && python manage.py migrate 
+CELERY_CMD=celery -A aiproject worker --loglevel=info
+# DJANGO_STARTUP_CMD="python manage.py makemigrations && \
+# python manage.py migrate && \
+# python manage.py collectstatic --noinput && \
+# python manage.py shell -c \"from django.contrib.auth import get_user_model; \
+# User = get_user_model(); \
+# User.objects.filter(username='${DJANGO_SUPERUSER_USERNAME}').exists() or \
+# User.objects.create_superuser('${DJANGO_SUPERUSER_USERNAME}', '${DJANGO_SUPERUSER_EMAIL}', '${DJANGO_SUPERUSER_PASSWORD}')\""
+
+export OPENAI_API_KEY = ''
+
+# SMTP Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'admin@quickans.ai'
+EMAIL_HOST_PASSWORD = 'zgdl avxu qwqb ijmn'
+EMAIL_ADMIN = 'admin@quickans.ai'
+
+SECRET_KEY = "uy27R0qk3Qy5LP5OPfjD1XVzYgJ4pb98V0kZCN8xRZybg-4YmMWU0"
+FRONTEND_BASE_URL ="http://192.168.0.157:3000"
+BACKEND_BASE_URL ="http://192.168.0.157:8000"
+
+#slak
+SLACK_CLIENT_ID="8444679109377.8431906978387"
+SLACK_CLIENT_SECRET = "452502149d6691a850fa615a61f35a73"
+REDIRECT_URI = "http://192.168.0.157:8000/api/slack/oauth/callback/"
